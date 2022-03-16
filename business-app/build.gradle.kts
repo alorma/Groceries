@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.alorma.groceries.business"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 31
         versionCode = 1
         versionName = "1.0"
@@ -48,6 +48,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.activity)
     implementation(libs.bundles.androidx.compose)
+
+    implementation(libs.androidx.material)
 
     testImplementation(libs.testing.junit)
 

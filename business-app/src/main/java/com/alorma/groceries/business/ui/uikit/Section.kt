@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
@@ -20,16 +21,16 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Section(
-    onClick: () -> Unit,
+    title: String,
     modifier: Modifier = Modifier,
     backgroundColor: Color = MaterialTheme.colors.secondary,
-    title: String,
+    onClick: () -> Unit,
 ) {
-    Card(
+    Surface(
         onClick = onClick,
         modifier = modifier,
-        shape = RoundedCornerShape(24.dp),
-        backgroundColor = backgroundColor.copy(alpha = 0.12f).compositeOver(MaterialTheme.colors.surface),
+        shape = RoundedCornerShape(32.dp),
+        color = backgroundColor.copy(alpha = 0.12f).compositeOver(MaterialTheme.colors.surface),
         indication = rememberRipple(color = backgroundColor),
     ) {
         Box(modifier = Modifier.padding(8.dp)) {
@@ -43,11 +44,11 @@ fun Section(
 fun SectionPreview() {
     MaterialTheme {
         Section(
-            onClick = {},
             modifier = Modifier
                 .height(120.dp)
                 .width(200.dp),
-            title = "Horarios"
+            title = "Horarios",
+            onClick = {},
         )
     }
 }

@@ -2,7 +2,8 @@
 <resources>
 
   <style name="Theme.Groceries"
-         parent="android:Theme.Material.Light.NoActionBar">
-    <item name="android:statusBarColor">@color/purple_700</item>
+         parent="@style/Theme.MaterialComponents.DayNight">
+    <item name="android:statusBarColor">?colorSurface</item>
+    <item name="android:windowLightStatusBar">?isLightTheme</item>
   </style>
 </resources>
