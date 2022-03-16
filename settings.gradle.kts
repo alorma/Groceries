@@ -13,5 +13,6 @@ dependencyResolutionManagement {
   }
 }
 rootProject.name = "Groceries"
-include ':client-app'
-include ':business-app'
+include(":business-app")
+
+enableFeaturePreview("VERSION_CATALOGS")

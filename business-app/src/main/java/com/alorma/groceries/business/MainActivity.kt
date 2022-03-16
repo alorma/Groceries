@@ -11,20 +11,20 @@ import com.alorma.groceries.business.ui.theme.GroceriesTheme
 
 class MainActivity : ComponentActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    setContent {
-      GroceriesTheme {
-        Scaffold(
-          topBar = {
-            TopAppBar(
-              title = { Text(text = stringResource(id = R.string.app_name)) },
-            )
-          }
-        ) {
+        setContent {
+            GroceriesTheme {
+                Scaffold(
+                    topBar = {
+                        TopAppBar(
+                            title = { Text(text = stringResource(id = R.string.app_name)) },
+                        )
+                    }
+                ) {
+                }
+            }
         }
-      }
     }
-  }
 }

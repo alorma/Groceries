@@ -20,33 +20,34 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Section(
-  onClick: () -> Unit,
-  modifier: Modifier = Modifier,
-  backgroundColor: Color = MaterialTheme.colors.secondary,
-  title: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    backgroundColor: Color = MaterialTheme.colors.secondary,
+    title: String,
 ) {
-  Card(
-    onClick = onClick,
-    modifier = modifier,
-    shape = RoundedCornerShape(24.dp),
-    backgroundColor = backgroundColor.copy(alpha = 0.12f).compositeOver(MaterialTheme.colors.surface),
-    indication = rememberRipple(color = backgroundColor),
-  ) {
-    Box(modifier = Modifier.padding(8.dp)) {
-      Text(text = title)
+    Card(
+        onClick = onClick,
+        modifier = modifier,
+        shape = RoundedCornerShape(24.dp),
+        backgroundColor = backgroundColor.copy(alpha = 0.12f).compositeOver(MaterialTheme.colors.surface),
+        indication = rememberRipple(color = backgroundColor),
+    ) {
+        Box(modifier = Modifier.padding(8.dp)) {
+            Text(text = title)
+        }
     }
-  }
 }
 
 @Preview
 @Composable
 fun SectionPreview() {
-  MaterialTheme {
-    Section(
-      onClick = {}, modifier = Modifier
-        .height(120.dp)
-        .width(200.dp),
-      title = "Horarios"
-    )
-  }
+    MaterialTheme {
+        Section(
+            onClick = {},
+            modifier = Modifier
+                .height(120.dp)
+                .width(200.dp),
+            title = "Horarios"
+        )
+    }
 }
