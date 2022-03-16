@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      val title by remember { mutableStateOf("Fruteria Pili")}
+      val title by remember { mutableStateOf("Frutas Pili")}
       val items = remember { mutableListOf("Schedule", "Stock", "Orders", "Clients", "Settings") }
       GroceriesTheme {
         Scaffold {
@@ -73,7 +73,7 @@ class MainActivity : ComponentActivity() {
           Section(
             modifier = Modifier
               .fillMaxWidth()
-              .heightIn(100.dp),
+              .heightIn(72.dp),
             backgroundColor = MaterialTheme.colors.onSurface,
             title = item,
             onClick = { },
