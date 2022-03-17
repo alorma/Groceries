@@ -1,4 +1,4 @@
-package com.alorma.groceries.business.ui.theme
+package com.alorma.groceries.uikit.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
@@ -16,7 +16,7 @@ val AppTypography = Typography(
 		fontWeight = FontWeight.W400,
 		fontSize = 57.sp,
 		lineHeight = 64.sp,
-		letterSpacing = -0.25.sp,
+		letterSpacing = (-0.25).sp,
 	),
 	displayMedium = TextStyle(
 		fontFamily = Roboto,

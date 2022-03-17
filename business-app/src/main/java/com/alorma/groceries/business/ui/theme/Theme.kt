@@ -1,13 +1,12 @@
 package com.alorma.groceries.business.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import com.alorma.groceries.uikit.theme.AppTypography
 
 private val LightThemeColors = lightColorScheme(
-
   primary = md_theme_light_primary,
   onPrimary = md_theme_light_onPrimary,
   primaryContainer = md_theme_light_primaryContainer,
@@ -36,7 +35,6 @@ private val LightThemeColors = lightColorScheme(
   inversePrimary = md_theme_light_inversePrimary,
 )
 private val DarkThemeColors = darkColorScheme(
-
   primary = md_theme_dark_primary,
   onPrimary = md_theme_dark_onPrimary,
   primaryContainer = md_theme_dark_primaryContainer,
