@@ -1,10 +1,9 @@
 package com.alorma.groceries.business.ui.theme
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import com.alorma.groceries.uikit.theme.AppTypography
+import com.alorma.groceries.uikit.theme.BaseTheme
 
 private val LightThemeColors = lightColorScheme(
   primary = md_theme_light_primary,
@@ -64,19 +63,10 @@ private val DarkThemeColors = darkColorScheme(
 )
 
 @Composable
-fun BusinessTheme(
-  useDarkTheme: Boolean = false,
-  content: @Composable () -> Unit
-) {
-  val colors = if (!useDarkTheme) {
-    LightThemeColors
-  } else {
-    DarkThemeColors
-  }
-
-  MaterialTheme(
-    colorScheme = colors,
-    typography = AppTypography,
+fun BusinessTheme(content: @Composable () -> Unit) {
+  BaseTheme(
+    lightColors = LightThemeColors,
+    darkColors = DarkThemeColors,
     content = content
   )
 }
