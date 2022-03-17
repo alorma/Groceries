@@ -5,7 +5,8 @@ androidBuildTools = "7.1.2"
 androidx-core = "1.7.0"
 androidx-lifecycle-runtime = "2.4.1"
 androidx-activity = "1.4.0"
-compose = "1.1.1"
+compose = "1.2.0-alpha05"
+composeMaterial = "1.0.0-alpha07"
 
 testing-junit = "4.13.2"
 testing-androidx-junit = "1.1.3"
@@ -15,22 +16,30 @@ material = "1.5.0"
 
 [libraries]
 kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-android = { module = "com.android.tools.build:gradle", version.ref = "androidBuildTools"}
+android = { module = "com.android.tools.build:gradle", version.ref = "androidBuildTools" }
 
-androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core"}
-androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime"}
-androidx-activity = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity"}
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime" }
+androidx-activity = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-material = { module = "com.google.android.material:material", version.ref = "material" }
 
-androidx-composeUi = { module = "androidx.compose.ui:ui", version.ref = "compose"}
-androidx-composeMaterial = { module = "androidx.compose.material:material", version.ref = "compose" }
+androidx-composeUi = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+androidx-composeFoundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+androidx-composeFoundationLayout = { module = "androidx.compose.foundation:foundation-layout", version.ref = "compose" }
+androidx-composeMaterial3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial" }
 androidx-composeUiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 
-testing-junit = { module = "junit:junit", version.ref = "testing-junit"}
-testing-androidx-junit = { module = "androidx.test.ext:junit", version.ref = "testing-androidx-junit"}
-testing-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "testing-espresso-core"}
-testing-compose-ui = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose"}
-testing-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose"}
+testing-junit = { module = "junit:junit", version.ref = "testing-junit" }
+testing-androidx-junit = { module = "androidx.test.ext:junit", version.ref = "testing-androidx-junit" }
+testing-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "testing-espresso-core" }
+testing-compose-ui = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+testing-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
 
 [bundles]
-androidx-compose = [ "androidx-composeUi", "androidx-composeMaterial", "androidx-composeUiTooling" ]
+androidx-compose = [
+    "androidx-composeUi",
+    "androidx-composeMaterial3",
+    "androidx-composeUiTooling",
+    "androidx-composeFoundation",
+    "androidx-composeFoundationLayout",
+]

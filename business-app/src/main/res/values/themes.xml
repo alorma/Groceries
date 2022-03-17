@@ -2,7 +2,7 @@
 <resources>
 
   <style name="Theme.Groceries"
-         parent="@style/Theme.MaterialComponents.DayNight">
+         parent="@style/Theme.Material3.DayNight">
     <item name="android:statusBarColor">?colorSurface</item>
     <item name="android:windowLightStatusBar">?isLightTheme</item>
   </style>
