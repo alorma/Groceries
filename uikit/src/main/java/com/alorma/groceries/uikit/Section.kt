@@ -1,4 +1,4 @@
-package com.alorma.groceries.business.ui.uikit
+package com.alorma.groceries.uikit
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.alorma.groceries.business.ui.theme.BusinessTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,7 +53,7 @@ fun Section(
 @Preview
 @Composable
 fun SectionPreview() {
-    BusinessTheme {
+    MaterialTheme {
         Section(
             title = "Horarios",
             onClick = {},

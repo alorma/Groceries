@@ -12,7 +12,10 @@ dependencyResolutionManagement {
     mavenCentral()
   }
 }
-rootProject.name = "Groceries"
-include(":business-app")
 
 enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "Groceries"
+include(":business-app")
+include(":uikit")
