@@ -3,15 +3,12 @@ package com.alorma.groceries.business
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -32,7 +29,9 @@ class MainActivity : ComponentActivity() {
       val items = remember { mutableListOf("Schedule", "Stock", "Orders", "Clients", "Settings") }
       BusinessTheme {
         Scaffold {
-          Column {
+          Column(
+
+          ) {
             ManageOptions(items)
           }
         }
@@ -40,27 +39,32 @@ class MainActivity : ComponentActivity() {
     }
   }
 
-  @OptIn(ExperimentalFoundationApi::class)
   @Composable
   private fun ManageOptions(items: List<String>) {
-    LazyVerticalGrid(
-      modifier = Modifier.fillMaxWidth(),
-      verticalArrangement = Arrangement.spacedBy(8.dp),
-      horizontalArrangement = Arrangement.spacedBy(8.dp),
-      contentPadding = PaddingValues(16.dp),
-      columns = GridCells.Fixed(2),
+    Column(
+      modifier = Modifier.padding(8.dp),
+      verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-      items(items) { item ->
-        key(item) {
-          Section(
-            modifier = Modifier
-              .fillMaxWidth()
-              .heightIn(72.dp),
-            title = item,
-            onClick = { },
-          )
+      val chunks = items.chunked(2)
+      chunks.forEach { chunkedItems ->
+        Row(
+          horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+          chunkedItems.forEach { item ->
+            key(item) {
+              Section(
+                modifier = Modifier
+                  .fillMaxWidth()
+                  .weight(1f)
+                  .heightIn(72.dp),
+                title = item,
+                onClick = { },
+              )
+            }
+          }
         }
       }
+
     }
   }
 }
