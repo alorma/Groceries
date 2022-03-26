@@ -13,6 +13,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -86,8 +87,11 @@ fun DashboardContent(
       item(key = { "options" }) {
         DashboardOptions(state.options)
       }
-      item(key = "pending commands") {
-        DashboardPendingOrders(state.pendingOrders)
+      item(key = "pending orders") {
+        OrdersList("Pending", state.pendingOrders)
+      }
+      item(key = "ready orders") {
+        OrdersList("Ready", state.readyOrders)
       }
     }
   }
@@ -105,27 +109,51 @@ fun DashboardOptions(
 }
 
 @Composable
-fun DashboardPendingOrders(
+fun OrdersList(
+  title: String,
   pendingCommands: UiState<List<String>, () -> Unit>
 ) {
-  when (pendingCommands) {
-    is UiState.Initial -> DashboardLoading()
-    is UiState.Success -> {
-      Column {
-        pendingCommands.data.forEach { pendingCommand ->
-          Text(text = "Pending command: $pendingCommand")
+  Column(
+    modifier = Modifier
+      .fillMaxSize()
+      .padding(horizontal = 8.dp),
+    verticalArrangement = Arrangement.spacedBy(8.dp)
+  ) {
+    Text(
+      modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp),
+      text = title,
+      style = MaterialTheme.typography.headlineMedium,
+      color = MaterialTheme.colorScheme.primary,
+    )
+
+    when (pendingCommands) {
+      is UiState.Initial -> DashboardLoading()
+      is UiState.Success -> {
+        Column(
+          modifier = Modifier.fillMaxSize(),
+          verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+          pendingCommands.data.forEach { pendingCommand ->
+            Row(
+              modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
+            ) {
+              Text(text = "$title command: $pendingCommand")
+            }
+          }
         }
       }
-    }
-    is UiState.Error -> {
-      Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center,
-      ) {
-        Button(
-          onClick = { pendingCommands.errorState() }
+      is UiState.Error -> {
+        Box(
+          modifier = Modifier.fillMaxSize(),
+          contentAlignment = Alignment.Center,
         ) {
-          Text(text = "Retry")
+          Button(
+            onClick = { pendingCommands.errorState() }
+          ) {
+            Text(text = "Retry")
+          }
         }
       }
     }

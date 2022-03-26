@@ -23,7 +23,8 @@ class DashboardViewModel : ViewModel() {
       _state.update {
         UiState.Success(
           DashboardUiState(
-            options = UiState.Success(options)
+            options = UiState.Success(options),
+            readyOrders = UiState.Success(listOf("X", "Y", "Z"))
           )
         )
       }
