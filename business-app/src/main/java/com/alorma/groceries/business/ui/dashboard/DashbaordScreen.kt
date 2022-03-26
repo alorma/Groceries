@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -86,7 +87,7 @@ fun DashboardContent(
         DashboardOptions(state.options)
       }
       item(key = "pending commands") {
-        DashboardPendingCommands(state.pendingCommands)
+        DashboardPendingOrders(state.pendingOrders)
       }
     }
   }
@@ -94,19 +95,18 @@ fun DashboardContent(
 
 @Composable
 fun DashboardOptions(
-  options: UiState<List<String>>
+  options: UiState<List<String>, Nothing>
 ) {
   when (options) {
     is UiState.Initial -> DashboardLoading()
-    is UiState.Success -> {
-      ManageOptions(options.data)
-    }
+    is UiState.Success -> ManageOptions(options.data)
+    is UiState.Error -> DashboardError()
   }
 }
 
 @Composable
-fun DashboardPendingCommands(
-  pendingCommands: UiState<List<String>>
+fun DashboardPendingOrders(
+  pendingCommands: UiState<List<String>, () -> Unit>
 ) {
   when (pendingCommands) {
     is UiState.Initial -> DashboardLoading()
@@ -114,6 +114,18 @@ fun DashboardPendingCommands(
       Column {
         pendingCommands.data.forEach { pendingCommand ->
           Text(text = "Pending command: $pendingCommand")
+        }
+      }
+    }
+    is UiState.Error -> {
+      Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+      ) {
+        Button(
+          onClick = { pendingCommands.errorState() }
+        ) {
+          Text(text = "Retry")
         }
       }
     }

@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DashboardViewModel : ViewModel() {
-  private val _state: MutableStateFlow<UiState<DashboardUiState>> = MutableStateFlow(
+  private val _state: MutableStateFlow<UiState<DashboardUiState, Nothing>> = MutableStateFlow(
     UiState.Initial(DashboardUiState())
   )
-  val state: StateFlow<UiState<DashboardUiState>> = _state.asStateFlow()
+  val state: StateFlow<UiState<DashboardUiState, Nothing>> = _state.asStateFlow()
 
   init {
     viewModelScope.launch {
@@ -32,7 +32,39 @@ class DashboardViewModel : ViewModel() {
         if (state is UiState.Success) {
           UiState.Success(
             state.data.copy(
-              pendingCommands = UiState.Success(listOf("A", "B", "C"))
+              pendingOrders = UiState.Error(
+                errorState = ::retryPendingCommands
+              )
+            )
+          )
+        } else {
+          state
+        }
+      }
+    }
+  }
+
+  private fun retryPendingCommands() {
+    viewModelScope.launch {
+      _state.update { state ->
+        if (state is UiState.Success) {
+          UiState.Success(
+            state.data.copy(
+              pendingOrders = UiState.Initial()
+            )
+          )
+        } else {
+          state
+        }
+      }
+      delay(1_500)
+      _state.update { state ->
+        if (state is UiState.Success) {
+          UiState.Success(
+            state.data.copy(
+              pendingOrders = UiState.Success(
+                data = listOf("A", "B", "C")
+              )
             )
           )
         } else {
