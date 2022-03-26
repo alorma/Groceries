@@ -50,6 +50,7 @@ dependencies {
   implementation(libs.androidx.material)
 
   implementation(libs.bundles.androidx.compose)
+  implementation(libs.bundles.koin)
 
   debugImplementation(libs.testing.compose.manifest)
 
